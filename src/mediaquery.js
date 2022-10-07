@@ -14,7 +14,7 @@ var RE_LENGTH_UNIT = /(em|rem|px|cm|mm|in|pt|pc)?\s*$/,
   RE_RESOLUTION_UNIT = /(dpi|dpcm|dppx)?\s*$/;
 
 function match(parsed, values) {
-  if (!parsed) {
+  if (!parsed || !parsed.some) {
     return false;
   }
   if (parsed.length === 1) {

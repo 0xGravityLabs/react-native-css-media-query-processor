@@ -1,6 +1,5 @@
 import merge from "deepmerge";
 import memoize from "micro-memoize";
-import { Platform } from "react-native";
 import mediaQuery from "./mediaquery.js";
 
 const PREFIX = "@media";
@@ -30,12 +29,6 @@ export function process(obj, matchObject) {
   let res = mFilterNonMq(obj);
 
   mqKeys.forEach(key => {
-    if (/^@media\s+(not\s+)?(ios|android|dom|macos|web|windows)/i.test(key)) {
-      matchObject.type = Platform.OS;
-    } else {
-      matchObject.type = "screen";
-    }
-
     const isMatch = mediaQuery.match(obj.__mediaQueries[key], matchObject);
     if (isMatch) {
       res = merge(res, obj[key]);
